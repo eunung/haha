@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+    <title>Signal</title>
+</head>
+<body>
+    <section id="bg">
+        <h1>Now Loading</h1>
+        <div class="container-heart">
+            <div class="heart vibration">
+                <img src="{{ url_for('static', filename='img/heart6.png') }}" alt="heart">
+            </div>
+            <div class="container">
+                <h1>이제 이상형의 프로필을 입력하세요</h1>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        setTimeout(function() {
+            window.location.href = "hope_ah";
+        }, 2500); // 2.5초는 2500 밀리초
+    </script>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

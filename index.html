@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>너는 SOLO</title>
+</head>
+<body>
+    <section id="bg">
+        <h1>너는 SOLO</h1>
+        <div class="container-heart">
+            <div class="heart">
+                <img src="{{ url_for('static', filename='img/heart6.png') }}" alt="heart">
+            </div>
+            <div class="container">
+                <h1>연성대학교 정보통신과<br><br>민봉기의문단속조<br><br>너는 SOLO </h1>
+                <form class="inputForm" action="{{ url_for('index') }}" method="post">
+										<p>남자 : {{ man_count }}</p>
+										<p>여자 : {{ women_count }}</p>
+										<p>매칭된 커플 : {{ couple_count }}</p>
+                    <button class="button-82-pushable" type="submit" name="start_check" value="start">
+                        <span class="button-82-shadow"></span>
+                        <span class="button-82-edge"></span>
+                        <span class="button-82-front text">Start</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

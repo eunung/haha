@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>너는 SOLO</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .profile-section, .ideal-match-section {
+            width: 48%;
+        }
+
+        /* Custom CSS for card text */
+        .card-text {
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        /* Custom CSS for card header */
+        .card-header {
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+h1 {
+            font-family: 'Mouse Memoirs', Arial, sans-serif;
+            font-weight: bold;
+            font-size: 34.86px;
+	text-align: center; /* 가운데 정렬을 추가합니다 */
+        }
+    </style>
+</head>
+<body>
+    <section id="bg">
+        <h1>너는 SOLO</h1>
+        <div class="container-heart">
+            <div class="heart">
+                <img src="{{ url_for('static', filename='img/heart6.png') }}" alt="heart">
+            </div>
+				<h2><strong>제출하기 전 입력한 정보 확인 부탁드립니다.</strong></h2>
+            <div class="container">
+                <div class="profile-section card border-warning mb-3" style="max-width: 23rem;">
+                    <center><div class="card-header">내 프로필</div></center>
+                    <div class="card-body text-Dark">
+                        <p class="card-text">전화번호 : {{ phone }}</p>
+                        <p class="card-text">Instagram : {{ insta }}</p>
+                        <p class="card-text">성별 : {% if gender == "m" %}남자{% else %}여자{% endif %}</p>
+                        <p class="card-text">나이 : {{ age }}세</p>
+                        <p class="card-text">키 : {{ height }}cm</p>
+                        <p class="card-text">MBTI : {% if mbti_e_i == "e" %}E{% else %}I{% endif %}{% if mbti_s_n == "s" %}S{% else %}N{% endif %}{% if mbti_t_f == "t" %}T{% else %}F{% endif %}{% if mbti_p_j == "p" %}P{% else %}J{% endif %}</p>
+                        <p class="card-text">지역 : {% if home == "서울" %}서울{% elif home == "경기" %}경기{% elif home == "인천" %}인천{% else %}그 외{% endif %}</p>
+                        <p class="card-text">흡연 : {% if smoke == "y" %}흡연자{% else %}비흡연자{% endif %}</p>
+                    </div>
+                </div>
+                <div class="ideal-match-section card border-warning mb-3" style="max-width: 23rem;">
+                    <center><div class="card-header">이상형</div></center>
+                    <div class="card-body text-Dark">
+                        <p>
+                          {% if hope_age_min == "1" and hope_age_max == "999" %}
+                            <strong style="font-size: 2rem;">나이 : 상관 없음</strong>
+                          {% else %}
+                            <strong style="font-size: 2rem;">나이 : {% if hope_age_min %}{{ hope_age_min }}{% else %}상관없음{% endif %}~{% if hope_age_max %}{{ hope_age_max }}{% else %}상관없음{% endif %}세</strong>
+                          {% endif %}
+                        </p>
+
+                        <p>
+                          {% if hope_height_min == "1" and hope_height_max == "999" %}
+                            <strong style="font-size: 2rem;">키 : 상관 없음</strong>
+                          {% else %}
+                            <strong style="font-size: 2rem;">키 : {% if hope_height_min %}{{ hope_height_min }}{% else %}상관없음{% endif %}~{% if hope_height_max %}{{ hope_height_max }}{% else %}상관없음{% endif %}cm</strong>
+                          {% endif %}
+                        </p>
+
+                        <p class="card-text">MBTI E/I : {% if hope_mbti_e_i == "e" %}E{% elif hope_mbti_e_i == "i" %}I{% else %}상관없음{% endif %}</p>
+                        <p class="card-text">MBTI S/N : {% if hope_mbti_s_n == "s" %}S{% elif hope_mbti_s_n == "n" %}N{% else %}상관없음{% endif %}</p>
+                        <p class="card-text">MBTI T/F : {% if hope_mbti_t_f == "t" %}T{% elif hope_mbti_t_f == "f" %}F{% else %}상관없음{% endif %}</p>
+                        <p class="card-text">MBTI P/J : {% if hope_mbti_p_j == "p" %}P{% elif hope_mbti_p_j == "j" %}J{% else %}상관없음{% endif %}</p>
+                        <p class="card-text">지역 : {% if hope_home == "서울" %}서울{% elif hope_home == "경기도" %}경기도{% elif hope_home == "인천" %}인천{% elif hope_home == "ex" %}수도권 외{% else %}상관없음{% endif %}</p>
+                        <p class="card-text">흡연 : {% if hope_smoke == "y" %}흡연자{% elif hope_smoke == "n" %}비흡연자{% else %}상관없음{% endif %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+<div class="button-container text-center" style="position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%);">
+    <form class="inputForm" method="post">
+        <!-- Back 버튼 -->
+        <button class="button-82-pushable" type="button" onclick="window.location.href='hope_hs'" style="margin-right: 10px;"> <!-- 여백 추가 -->
+            <span class="button-82-shadow"></span>
+            <span class="button-82-edge"></span>
+            <span class="button-82-front text">Back</span>
+        </button>
+        <!-- Submit 버튼 -->
+        <button class="button-82-pushable" type="submit" role="button" name="rel_check" style="margin-left: 10px;"> <!-- 여백 추가 -->
+            <span class="button-82-shadow"></span>
+            <span class="button-82-edge"></span>
+            <span class="button-82-front text">제출하기</span>
+        </button>
+    </form>
+</div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
